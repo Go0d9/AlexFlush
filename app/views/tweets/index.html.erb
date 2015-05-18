@@ -1,0 +1,21 @@
+<table>
+  <% @tweets.each do |t| %>
+    <tr id='tweet_<%=t.id%>', class="<%=cycle('list_line_odd','list_line_even')%>">
+      <td class="list_description">
+        <dl>
+            <dt><%= t.title %></dt>
+            <dd><%= truncate(strip_tags(t.text),
+                             length: 80) %></dd>
+        </dl>
+      </td>
+
+      <td class="list_actions">
+        <p>
+          <%= link_to 'Читать', tweet_path(t) %>
+          <%= link_to 'Редактировать', edit_tweet_path(t) %>
+          <%= link_to 'Удалить', tweet_path(t), method: :delete, data: {confirm: "Вы уверены?"}, remote:true %>
+        </p>
+      </td>
+    </tr>
+  <% end %>
+</table>

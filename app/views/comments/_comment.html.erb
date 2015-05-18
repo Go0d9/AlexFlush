@@ -1,0 +1,17 @@
+<div id='comment_<%= comment.id %>', class="comments">
+    <p>
+      <strong>Автор:</strong>
+      <%= comment.commenter %>
+    </p>
+
+    <p>
+      <strong>Коментарий:</strong>
+      <%= comment.body %>
+    </p>
+
+    <p>
+      <%= link_to 'Удалить коментарий', [comment.tweet, comment],
+                  method: :delete,
+                  data: { confirm: 'Вы уверены?' }, remote:true %>
+    </p>
+</div>

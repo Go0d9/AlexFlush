@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alex Flush</title>
+  <%= stylesheet_link_tag "application", media: "all",
+                          "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application",
+                             "data-turbolinks-track" => true %>
+  <%= csrf_meta_tag %>
+</head>
+<body class="HolyGrail">
+    <header>
+      <%= image_tag("logo.png") %>
+      <%= @page_title || "Alex Flush" %>
+    </header>
+<div class="HolyGrail-body">
+  <main class="HolyGrail-content">
+    <%= yield %>
+  </main>
+  <nav class="HolyGrail-nav">
+    <h2>Меню</h2>
+    <li><%= link_to "Главная", root_path, :class=>"nav" %></li>
+    <li><%= link_to "Категории", root_path, :class=>"nav" %></li>
+  </nav>
+  <aside class="HolyGrail-ads">
+    <% if notice %>
+        <p class="notice"><%= notice %></p>
+    <% end %>
+
+    <p class="alert"><%= alert %></p>
+    <% if user_signed_in? %>
+        <span>Здравствуйте, <%= current_user.email %></span>
+        <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+    <% else %>
+        <%= link_to 'Войти', new_user_session_path, id: "sign_in", remote:true  %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+    <% end %>
+    <% if current_user && current_user.admin? %>
+        <h3>Панель инструментов</h3>
+        <%= link_to "Создать запись", new_tweet_path, id: "new_link", remote: true %>
+    <% end %>
+  </aside>
+</div>
+<footer>…</footer>
+</body>
+
+</html>

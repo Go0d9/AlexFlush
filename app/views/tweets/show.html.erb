@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <td class="list_description">
+      <dl>
+        <dt><h1><%= @tweet.title %></h1></dt>
+        <dd><%= @tweet.text%></dd>
+      </dl>
+      <%= link_to 'Назад', root_path, :class=>"read" %>
+      <h2 id="count">Коментарии(<%= @tweet.comments.count %>)</h2>
+      <%= render @tweet.comments %>
+      <%= render "comments/form" %>
+    </td>
+  </tr>
+</table>
