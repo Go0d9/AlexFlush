@@ -8,10 +8,11 @@
       <strong>Коментарий:</strong>
       <%= comment.body %>
     </p>
-
+<% if current_user && current_user.admin? %>
     <p>
       <%= link_to 'Удалить коментарий', [comment.tweet, comment],
                   method: :delete,
                   data: { confirm: 'Вы уверены?' }, remote:true %>
     </p>
+<% end %>
 </div>
