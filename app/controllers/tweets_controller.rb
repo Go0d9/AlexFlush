@@ -9,20 +9,23 @@ class TweetsController < ApplicationController
 
   def new
   @tweet = Tweet.new
+  @categories = Category.all.map{|c| [ c.name, c.id ] }
   end
 
   def edit
     @tweet = Tweet.find(params[:id])
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
   end
 
   def create
     @tweet = Tweet.new(tweet_params)
+    @tweet.category_id = params[:category_id]
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to tweets_url, notice: 'Tweet was successfully create.' }
-        format.js
+        format.html { redirect_to @tweet, notice: 'tweet was successfully created.' }
+        format.json { render :show, status: :created, location: @tweet }
       else
-        format.html { render  'new' }
+        format.html { render :new }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
     end
@@ -35,7 +38,8 @@ class TweetsController < ApplicationController
   end
 
   def update
-    @tweet = Tweet.find(params[:id])
+        @tweet = Tweet.find(params[:id])
+        @tweet.category_id = params[:category_id]
 
     respond_to do |format|
       if @tweet.update(tweet_params)
@@ -63,7 +67,7 @@ class TweetsController < ApplicationController
       render_404 unless @tweet
     end
     def tweet_params
-      params.require(:tweet).permit(:title, :text)
+      params.require(:tweet).permit(:title, :text, :category_id)
     end
 
 end

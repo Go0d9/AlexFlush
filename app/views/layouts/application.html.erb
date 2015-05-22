@@ -20,7 +20,7 @@
   <nav class="HolyGrail-nav">
     <h2>Меню</h2>
     <li><%= link_to "Главная", root_path, :class=>"nav" %></li>
-    <li><%= link_to "Категории", root_path, :class=>"nav" %></li>
+    <li><%= link_to "Категории", categories_path, :class=>"nav"  %></li>
   </nav>
   <aside class="HolyGrail-ads">
     <% if notice %>
@@ -37,6 +37,7 @@
     <% if current_user && current_user.admin? %>
         <h3>Панель инструментов</h3>
         <%= link_to "Создать запись", new_tweet_path, id: "new_link", remote: true %>
+        <%= link_to "Создать категорию", new_category_path, id: "new_cat", remote: true %>
     <% end %>
   </aside>
 </div>

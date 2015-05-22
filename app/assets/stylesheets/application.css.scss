@@ -92,7 +92,7 @@ button:active {
   border-color: #FFFAD5;
   color:#FFFAD5;
 }
-#tweet_text, #tweet_title, #comment_commenter, #comment_body, .comments, .notice {
+input, textarea, select, option {
   padding: 10px 10px;
   bottom: 50px;
   right:0px;
@@ -158,19 +158,14 @@ label{
 li {
   padding-bottom: 5px;
 }
-
-#user_email, #user_password, #user_password_confirmation, #user_remember_me {
-  padding: 10px 10px;
-  bottom: 50px;
-  right: 0px;
-  left: 0px;
-  margin: auto;
-  height: 5px;
+a {
+  right:0px;
+  left:0px;
+  margin:auto;
+  width: 150px;
   -webkit-appearance: none;
-  background: white;
-  border: 2px solid #DB9E36;
-  color: #105B63;
-  border-radius: 10px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  color: #224444;
   cursor: pointer;
+  bottom: 5px;
+
 }

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511163728) do
+ActiveRecord::Schema.define(version: 20150521135708) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.text     "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string   "commenter"
@@ -23,12 +30,19 @@ ActiveRecord::Schema.define(version: 20150511163728) do
 
   add_index "comments", ["tweet_id"], name: "index_comments_on_tweet_id"
 
+  create_table "tweet_categories", force: :cascade do |t|
+    t.integer  "tweet_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "tweets", force: :cascade do |t|
     t.string   "title"
     t.text     "text"
-    t.string   "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "category_id"
   end
 
   create_table "users", force: :cascade do |t|

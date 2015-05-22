@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
+  
 
   def render_403
     render file: "public/403.html", status: 403

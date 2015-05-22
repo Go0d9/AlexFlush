@@ -1,21 +1,28 @@
 <table>
-  <% @tweets.each do |t| %>
-    <tr id='tweet_<%=t.id%>', class="<%=cycle('list_line_odd','list_line_even')%>">
+  <% @tweets.each do |tweet| %>
+    <tr id='tweet_<%= tweet.id%>', class="<%=cycle('list_line_odd','list_line_even')%>">
       <td class="list_description">
         <dl>
-            <dt><%= t.title %></dt>
-            <dd><%= truncate(strip_tags(t.text),
-                             length: 80) %></dd>
+            <dt>
+              <%= tweet.title %>
+              <%= link_to "#{Category.find(tweet.category_id).name}", category_path(tweet.category_id) %>
+            </dt>
+            <dd>
+              <%= truncate(strip_tags(tweet.text),
+                           length: 80) %>
+            </dd>
         </dl>
       </td>
-
+      
       <td class="list_actions">
         <p>
-          <%= link_to 'Читать', tweet_path(t) %>
-          <%= link_to 'Редактировать', edit_tweet_path(t) %>
-          <%= link_to 'Удалить', tweet_path(t), method: :delete, data: {confirm: "Вы уверены?"}, remote:true %>
+          <%= link_to 'Читать', tweet_path(tweet) %>
+          <%= link_to 'Редактировать', edit_tweet_path(tweet) %>
+          <%= link_to 'Удалить', tweet_path(tweet), method: :delete, data: {confirm: "Вы уверены?"}, remote:true %>
+
         </p>
       </td>
     </tr>
   <% end %>
+  
 </table>

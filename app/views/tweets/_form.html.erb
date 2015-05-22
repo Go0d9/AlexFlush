@@ -13,12 +13,14 @@
           </ul>
         </div>
     <% end %>
-
+    <p>
+    <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select one!") %>      
+    </p>
     <p>
       <%= f.label "Название:" %><br>
       <%= f.text_field :title %>
     </p>
-
+ 
     <p>
       <%= f.label "Текст:" %><br>
       <%= f.text_area :text %>

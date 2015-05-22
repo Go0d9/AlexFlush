@@ -1,0 +1,17 @@
+<tbody>
+	<h1>
+	  <%= @category.name %>
+	</h1>
+
+	<p class="description">
+	  <%= @category.desc %>
+	</p>
+	 <h3> Статьи по <%= @category.name %>.</h3>
+	    <% Tweet.where(category_id: @category.id).each do |tweet| %>
+	    <%= link_to tweet.title, tweet_path(tweet) %>
+	 <% end %>
+	<% if current_user && current_user.admin? %>
+		<%= link_to 'Edit', edit_category_path(@category) %> 
+	<% end -%>
+	
+</tbody>

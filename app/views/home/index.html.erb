@@ -4,6 +4,7 @@
         <td class="list_description">
           <dl>
             <dt><%= t.title %></dt>
+            <small><%= link_to "#{Category.find(t.category_id).name}", category_path(t.category_id) %></small>
             <dd><%= truncate(strip_tags(t.text),
                              length: 230) %></dd>
           </dl>
